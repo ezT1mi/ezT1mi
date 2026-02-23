@@ -32,7 +32,6 @@
 
         .container { max-width: 900px; width: 100%; }
 
-        /* Minimalist Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -64,7 +63,6 @@
         }
         .profile-img:hover { filter: grayscale(0%); }
 
-        /* Hardware Grid */
         .section-label {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
@@ -78,7 +76,7 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px; /* Die Border kommt durch den Background des Grids */
+            gap: 1px;
             background-color: var(--card-border);
             border: 1px solid var(--card-border);
             border-radius: 12px;
@@ -126,8 +124,6 @@
 
         .service-row:last-child { border: none; }
 
-        .service-name { flex: 1; font-weight: 400; }
-        
         .type-tag {
             font-size: 0.65rem;
             font-family: 'JetBrains Mono', monospace;
@@ -135,10 +131,34 @@
             border-radius: 4px;
             margin-right: 20px;
             border: 1px solid var(--card-border);
+            width: 45px;
+            text-align: center;
         }
 
         .vm { color: var(--vm-blue); border-color: var(--vm-blue); }
         .lxc { color: var(--lxc-orange); border-color: var(--lxc-orange); }
+
+        /* Zentrierung der Speicherinfo */
+        .service-main-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-name {
+            font-weight: 400;
+            min-width: 250px; /* Schiebt die Speicherinfo in die Mitte */
+        }
+
+        .storage-info {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            background: #0a0a0a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #1a1a1a;
+        }
 
         .status-indicator {
             font-size: 0.75rem;
@@ -146,6 +166,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            margin-left: 20px;
         }
 
         .dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
@@ -157,9 +178,18 @@
             color: var(--secondary);
         }
 
+        footer a { text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .service-name { min-width: 150px; }
+        }
+
         @media (max-width: 600px) {
             header { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
             .profile-info h1 { font-size: 2.2rem; }
+            .service-main-info { flex-direction: column; align-items: flex-start; gap: 4px; }
+            .service-name { min-width: 0; }
         }
     </style>
 </head>
@@ -189,64 +219,102 @@
         <div class="card">
             <h3>Virtualization</h3>
             <p>High performance virtualization using Proxmox VE.</p>
-            <span class="spec-pill">8 Cores, 2,3TB Storage, 16GB RAM</span>
+            <span class="spec-pill">8 Cores, 2.3TB Storage, 16GB RAM</span>
         </div>
     </div>
 
     <span class="section-label">02 / Virtualization Stack</span>
     <div class="virt-list">
+        
         <div class="service-row">
             <span class="type-tag vm">VM</span>
-            <span class="service-name">Pelican Panel</span>
+            <div class="service-main-info">
+                <span class="service-name">Pelican Panel</span>
+                <span class="storage-info">100GB SSD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
         </div>
+
         <div class="service-row">
             <span class="type-tag vm">VM</span>
-            <span class="service-name">Jellyfin Media Server</span>
+            <div class="service-main-info">
+                <span class="service-name">Jellyfin Media Server</span>
+                <span class="storage-info">50GB SSD</span>
+                <span class="storage-info">500GB HDD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
         </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Nextcloud</span>
+            <div class="service-main-info">
+                <span class="service-name">Nextcloud</span>
+                <span class="storage-info">300GB HDD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
         </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Immich</span>
+            <div class="service-main-info">
+                <span class="service-name">Immich</span>
+                <span class="storage-info">200GB HDD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
         </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Authentik</span>
+            <div class="service-main-info">
+                <span class="service-name">Authentik</span>
+                <span class="storage-info">50GB SSD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
-        </div>    
+        </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Docmost</span>
+            <div class="service-main-info">
+                <span class="service-name">Docmost</span>
+                <span class="storage-info">50GB SSD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
-        </div>              
+        </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">SearXNG</span>
+            <div class="service-main-info">
+                <span class="service-name">SearXNG</span>
+                <span class="storage-info">50GB SSD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
-        </div>           
+        </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Zipline CDN</span>
+            <div class="service-main-info">
+                <span class="service-name">Zipline CDN</span>
+                <span class="storage-info">100GB HDD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
-        </div>       
+        </div>
+
         <div class="service-row">
             <span class="type-tag lxc">LXC</span>
-            <span class="service-name">Matrix (using Element)</span>
+            <div class="service-main-info">
+                <span class="service-name">Matrix (Element)</span>
+                <span class="storage-info">100GB SSD</span>
+            </div>
             <span class="status-indicator"><span class="dot"></span> Online</span>
-        </div>                  
+        </div>
+
     </div>
 
     <footer>
         <p>
-        <a href="impressum.html" style="color: #666; margin-right: 15px;">Impressum</a>
-        <a href="datenschutzerklärung.html" style="color: #666;">Datenschutz</a>
-    </p>
+            <a href="impressum.html" style="color: #666; margin-right: 15px;">Impressum</a>
+            <a href="datenschutzerklärung.html" style="color: #666;">Datenschutz</a>
+        </p>
         <p>© ezT1mi</p>
     </footer>
 </div>
