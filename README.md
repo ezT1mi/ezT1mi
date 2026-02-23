@@ -3,11 +3,9 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=ezt1mi&label=Profile%20views&color=0e75b6&style=flat" alt="ezt1mi" /> </p>
 
-- 🔭 I’m currently working on [Elyntria Network](https://elyntria.de/)
+- 🔭 I’m currently working on [derOlf.de](https://derolf.de/)
 
 - 🌱 I’m currently learning **Java, Kotlin, HTML, CSS**
-
-- 👯 I’m looking to collaborate on [derOlf.de](https://derolf.de/)
 
 - 🤝 I’m looking for help with [HetrixHosting](https://hetrixhosting.com/)
 
@@ -15,7 +13,7 @@
 
 - 💬 Ask me about **Nothing, I'm a dumbass**
 
-- 📫 How to reach me **info@lunexmc.net**
+- 📫 How to reach me **me@ezt1mi.xyz**
 
 - ⚡ Fun fact **I'm from Germany**
 
