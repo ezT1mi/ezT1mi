@@ -7,7 +7,7 @@
   },
   {
     "name": "Testumgebung",
-    "domain": "localhost",
+    "domain": "localhost:5173",
     "status": "active",
     "owner": "ezT1mi"
   }
