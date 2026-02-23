@@ -6,6 +6,12 @@
     "owner": "Leon"
   },
   {
+    "name": "derOlf Hauptseite",
+    "domain": "derolf.net",
+    "status": "active",
+    "owner": "Leon"
+  },  
+  {
     "name": "Testumgebung",
     "domain": "localhost:5173",
     "status": "active",
