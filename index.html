@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ezt1mi // Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --card-bg: #0a0a0a;
+            --card-border: #1a1a1a;
+            --accent: #ffffff;
+            --secondary: #666666;
+            --success: #00ff88;
+            --vm-blue: #0070f3;
+            --lxc-orange: #f5a623;
+        }
+
+        * { box-sizing: border-box; transition: all 0.2s ease; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--accent);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; width: 100%; }
+
+        /* Minimalist Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 40px;
+        }
+
+        .profile-info h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .profile-info p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin: 5px 0 0 0;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+        .profile-img:hover { filter: grayscale(0%); }
+
+        /* Hardware Grid */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px; /* Die Border kommt durch den Background des Grids */
+            background-color: var(--card-border);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: var(--bg);
+            padding: 32px;
+        }
+
+        .card:hover { background-color: var(--card-bg); }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0 0 10px 0;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin: 0;
+        }
+
+        .spec-pill {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            background: var(--card-border);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 15px;
+            color: var(--accent);
+        }
+
+        /* Services Table */
+        .service-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .service-row:last-child { border: none; }
+
+        .service-name { flex: 1; font-weight: 400; }
+        
+        .type-tag {
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 20px;
+            border: 1px solid var(--card-border);
+        }
+
+        .vm { color: var(--vm-blue); border-color: var(--vm-blue); }
+        .lxc { color: var(--lxc-orange); border-color: var(--lxc-orange); }
+
+        .status-indicator {
+            font-size: 0.75rem;
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+
+        footer {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+            .profile-info h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="profile-info">
+            <h1>ezt1mi</h1>
+            <p>Infrastructure & Homelab</p>
+        </div>
+        <img src="profilbild.png" alt="Profile" class="profile-img">
+    </header>
+
+    <span class="section-label">01 / Hardware Components</span>
+    <div class="grid">
+        <div class="card">
+            <h3>Compute Node</h3>
+            <p>High-density virtualization host running Proxmox VE.</p>
+            <span class="spec-pill">Intel Core i7 9700 · 16GB RAM</span>
+        </div>
+        <div class="card">
+            <h3>Storage Unit</h3>
+            <p>Two times external HDD Storage</p>
+            <span class="spec-pill">2TB Storage</span>
+        </div>
+        <div class="card">
+            <h3>Virtualization</h3>
+            <p>High performance virtualization using Proxmox VE.</p>
+            <span class="spec-pill">8 Cores, 2,3TB Storage, 16GB RAM</span>
+        </div>
+    </div>
+
+    <span class="section-label">02 / Virtualization Stack</span>
+    <div class="virt-list">
+        <div class="service-row">
+            <span class="type-tag vm">VM</span>
+            <span class="service-name">Pelican Panel</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>
+        <div class="service-row">
+            <span class="type-tag vm">VM</span>
+            <span class="service-name">Jellyfin Media Server</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Nextcloud</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Immich</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Authentik</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>    
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Docmost</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>              
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">SearXNG</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>           
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Zipline CDN</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>       
+        <div class="service-row">
+            <span class="type-tag lxc">LXC</span>
+            <span class="service-name">Matrix (using Element)</span>
+            <span class="status-indicator"><span class="dot"></span> Online</span>
+        </div>                  
+    </div>
+
+    <footer>
+        <p>
+        <a href="impressum.html" style="color: #666; margin-right: 15px;">Impressum</a>
+        <a href="datenschutzerklärung.html" style="color: #666;">Datenschutz</a>
+    </p>
+        <p>© ezT1mi</p>
+    </footer>
+</div>
+
+</body>
+</html>
