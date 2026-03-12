@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geschichte Test — NS-Staat & Erziehung zum Kampf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0c0a;
+  --paper:#f4f0e8;
+  --aged:#e8e2d4;
+  --red:#8b1a1a;
+  --stamp:#1a3a5c;
+  --text:#1c1a16;
+  --muted:#6b6258;
+  --line:#c8bfad;
+  --c-bg:#e8f5e9;--c-br:#2e7d32;--c-tx:#1b5e20;
+  --p-bg:#fff8e1;--p-br:#f9a825;--p-tx:#e65100;
+  --w-bg:#fce4e4;--w-br:#b71c1c;--w-tx:#7f0000;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--text);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;
+  font-size:18px;
+  line-height:1.7;
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 80% 10%, rgba(139,26,26,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(26,58,92,0.04) 0%, transparent 50%);
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 2rem 7rem;position:relative}
+
+/* HEADER */
+.site-header{padding:4.5rem 0 3rem;border-bottom:3px solid var(--ink);margin-bottom:0;position:relative;overflow:hidden}
+.site-header::after{content:'PRÜFUNG';font-family:'Bebas Neue',sans-serif;font-size:12rem;color:rgba(139,26,26,0.04);position:absolute;right:-1rem;top:-2rem;line-height:1;pointer-events:none;letter-spacing:0.05em}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--stamp);border:1.5px solid var(--stamp);display:inline-flex;align-items:center;gap:8px;padding:5px 12px;margin-bottom:1.75rem;position:relative}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--stamp)}
+h1{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(3.5rem,9vw,6.5rem);font-weight:400;letter-spacing:0.04em;line-height:0.88;color:var(--ink);margin-bottom:0.4rem}
+h1 .red{color:var(--red)}
+.header-sub{font-size:1rem;font-style:italic;color:var(--muted);margin-top:1.25rem;max-width:520px;border-left:2px solid var(--line);padding-left:1rem}
+.corner-text{position:absolute;right:0;top:4.5rem;writing-mode:vertical-rl;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.25em;color:var(--line);text-transform:uppercase}
+
+/* PROGRESS */
+.prog-bar-wrap{display:flex;align-items:center;gap:1.5rem;padding:1.25rem 0;border-bottom:1px solid var(--line);margin-bottom:3.5rem}
+.prog-track{flex:1;height:1px;background:var(--line);position:relative}
+.prog-fill{position:absolute;left:0;top:-1px;height:3px;background:var(--red);width:0%;transition:width 0.5s cubic-bezier(.4,0,.2,1)}
+.prog-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;letter-spacing:0.1em}
+
+/* CHAPTER */
+.chapter{display:flex;align-items:flex-end;gap:1.5rem;margin:4rem 0 2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.ch-num{font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:var(--aged);flex-shrink:0;margin-bottom:-0.1em}
+.ch-info{}
+.ch-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:0.25rem}
+.ch-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.6rem;font-weight:600;color:var(--ink);line-height:1.2}
+
+/* SUBSECTION */
+.sub{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stamp);padding-left:0.9rem;border-left:2px solid var(--stamp);margin:2.5rem 0 1.25rem}
+
+/* QUESTION CARD */
+.q{background:rgba(255,255,255,0.5);border:1px solid var(--line);border-left:3px solid transparent;padding:1.5rem 1.75rem;margin-bottom:0.9rem;transition:border-left-color 0.2s,background 0.2s,box-shadow 0.2s}
+.q:focus-within{border-left-color:var(--red);background:rgba(255,255,255,0.85);box-shadow:0 3px 24px rgba(0,0,0,0.07)}
+.q-meta{display:flex;align-items:baseline;gap:1rem;margin-bottom:0.5rem}
+.q-num{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--line);line-height:1}
+.q-pt{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.q-text{font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:1rem;line-height:1.55}
+textarea{width:100%;background:var(--aged);border:1px solid var(--line);color:var(--text);font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;font-weight:300;line-height:1.6;padding:0.75rem 1rem;resize:vertical;min-height:72px;outline:none;transition:border-color 0.2s,background 0.2s;border-radius:0}
+textarea:focus{border-color:var(--red);background:#fff}
+textarea::placeholder{color:var(--muted);font-style:italic}
+
+/* FEEDBACK */
+.fb{display:none;margin-top:0.75rem;padding:0.7rem 1rem;font-size:0.87rem;line-height:1.5;border-left:3px solid transparent}
+.fb.ok{display:block;background:var(--c-bg);border-left-color:var(--c-br);color:var(--c-tx)}
+.fb.half{display:block;background:var(--p-bg);border-left-color:var(--p-br);color:var(--p-tx)}
+.fb.bad{display:block;background:var(--w-bg);border-left-color:var(--w-br);color:var(--w-tx)}
+.fb .miss{margin-top:0.45rem;font-size:0.81rem;opacity:0.85;font-style:italic}
+.fbi{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-right:0.4rem;font-style:normal}
+
+/* BUTTONS */
+.action-row{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:4rem;padding-top:2.5rem;border-top:3px solid var(--ink);align-items:center}
+.btn-go{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.1em;color:#fff;background:var(--red);border:none;padding:0.85rem 2.75rem;cursor:pointer;transition:background 0.2s,transform 0.15s}
+.btn-go:hover{background:#a00;transform:translateY(-1px)}
+.btn-go:active{transform:none}
+.btn-reset{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--line);padding:0.75rem 1.5rem;cursor:pointer;transition:all 0.2s}
+.btn-reset:hover{border-color:var(--ink);color:var(--ink)}
+
+/* RESULT */
+#result{display:none;margin-top:4rem;padding:3rem;border:2px solid var(--ink);position:relative;background:rgba(255,255,255,0.75)}
+#result::before{content:'Auswertung';font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);position:absolute;top:-0.65em;left:2rem;background:var(--paper);padding:0 0.6rem}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.rb{text-align:center}
+.rbig{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:var(--red)}
+.rsml{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem}
+.rgrade{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;font-weight:600;color:var(--ink);margin-top:0.5rem;font-style:italic}
+@media(max-width:580px){.rg{grid-template-columns:1fr}.corner-text{display:none}h1{font-size:3rem}.ch-num{font-size:3.5rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="badge"><span class="badge-dot"></span>Geschichte · Test 01<span class="badge-dot"></span></div>
+  <h1>NS&#8209;Staat<br><span class="red">&amp; Erziehung</span></h1>
+  <p class="header-sub">Beantworte jede Frage vollständig in eigenen Worten. Das System prüft alle Kernbegriffe aus dem Lernmaterial.</p>
+  <div class="corner-text">Prüfungstest · Gymnasium</div>
+</header>
+
+<div class="prog-bar-wrap">
+  <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+  <div class="prog-lbl" id="prog-lbl">0 / 20 beantwortet</div>
+</div>
+
+<form id="quiz" novalidate>
+
+<!-- ═══ KAPITEL 1 ═══ -->
+<div class="chapter">
+  <div class="ch-num">01</div>
+  <div class="ch-info">
+    <span class="ch-tag">Kapitel</span>
+    <div class="ch-title">Der NS-Staat — ein Führerstaat</div>
+  </div>
+</div>
+
+<div class="sub">1.1 — Gleichschaltung</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">01</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was geschah mit Vereinen, Verbänden und Parteien im NS-Staat? Beschreibe den Prozess der Gleichschaltung.</div>
+<textarea placeholder="Deine Antwort …" data-q="0"></textarea><div class="fb" id="fb-0"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">02</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Welches Gesetz gab Hitler beim Aufbau der Diktatur freie Hand, und was war sein übergeordnetes Ziel?</div>
+<textarea placeholder="Deine Antwort …" data-q="1"></textarea><div class="fb" id="fb-1"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">03</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was bedeutete es, dass Deutschland ein „Führerstaat" wurde? Was sollte mit anderem Denken als dem des Führers geschehen?</div>
+<textarea placeholder="Deine Antwort …" data-q="2"></textarea><div class="fb" id="fb-2"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">04</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Welche Folgen hatte das „Berufsbeamtengesetz" für Staatsbedienstete? Nenne beide Entlassungsgründe.</div>
+<textarea placeholder="Deine Antwort …" data-q="3"></textarea><div class="fb" id="fb-3"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">05</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was passierte mit den freien Gewerkschaften, und was geschah mit deren Vermögen?</div>
+<textarea placeholder="Deine Antwort …" data-q="4"></textarea><div class="fb" id="fb-4"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">06</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was verloren die deutschen Länder im Zuge der Gleichschaltung?</div>
+<textarea placeholder="Deine Antwort …" data-q="5"></textarea><div class="fb" id="fb-5"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">07</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Wie entwickelte sich die Parteienlandschaft? Welche Partei war schließlich die einzige erlaubte, und welche wurde verboten?</div>
+<textarea placeholder="Deine Antwort …" data-q="6"></textarea><div class="fb" id="fb-6"></div></div>
+
+<div class="sub">1.2 — Selbstgleichschaltung</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">08</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Warum mussten die Nationalsozialisten nur wenig Personal austauschen? Beschreibe das Phänomen der Selbstgleichschaltung.</div>
+<textarea placeholder="Deine Antwort …" data-q="7"></textarea><div class="fb" id="fb-7"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">09</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Aus welchen drei Gründen traten viele Menschen in die NSDAP ein? Wurden sie dazu gezwungen?</div>
+<textarea placeholder="Deine Antwort …" data-q="8"></textarea><div class="fb" id="fb-8"></div></div>
+
+<div class="sub">1.3 — Führer und Reichskanzler</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">10</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Welche drei Ämter und Funktionen vereinte Hitler nach dem Tod des Reichspräsidenten in seiner Person?</div>
+<textarea placeholder="Deine Antwort …" data-q="9"></textarea><div class="fb" id="fb-9"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">11</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Wie schnell wurde Deutschland zur Diktatur und wie beschreibst du Hitlers Machtstellung am Ende dieses Prozesses?</div>
+<textarea placeholder="Deine Antwort …" data-q="10"></textarea><div class="fb" id="fb-10"></div></div>
+
+<div class="sub">1.4 — Freiwilligkeit im NS-Staat</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">12</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Traf Hitler alle Entscheidungen alleine? Erkläre die Rolle der Menschen in Behörden für die NS-Politik.</div>
+<textarea placeholder="Deine Antwort …" data-q="11"></textarea><div class="fb" id="fb-11"></div></div>
+
+<div class="sub">1.5 — Führerprinzip</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">13</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Erkläre das Führerprinzip: In welchen drei Bereichen sollte Hitler die oberste Befehlsgewalt besitzen?</div>
+<textarea placeholder="Deine Antwort …" data-q="12"></textarea><div class="fb" id="fb-12"></div></div>
+
+<!-- ═══ KAPITEL 2 ═══ -->
+<div class="chapter">
+  <div class="ch-num">02</div>
+  <div class="ch-info">
+    <span class="ch-tag">Kapitel</span>
+    <div class="ch-title">Erziehung zum Kampf</div>
+  </div>
+</div>
+
+<div class="sub">2.1 — Die Hitlerjugend (HJ)</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">14</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was war die Hitlerjugend und welche Bedeutung hatte sie für die Nationalsozialisten? Was passierte nach der Machtübernahme mit anderen Jugendgruppen?</div>
+<textarea placeholder="Deine Antwort …" data-q="13"></textarea><div class="fb" id="fb-13"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">15</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Für wen war die HJ ab einem bestimmten Zeitpunkt verpflichtend? Welche Altersgruppen und Geschlechter waren betroffen?</div>
+<textarea placeholder="Deine Antwort …" data-q="14"></textarea><div class="fb" id="fb-14"></div></div>
+
+<div class="sub">2.2 — Erziehung zum Krieg</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">16</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Wozu sollten Jugendliche in der HJ erzogen werden? Wofür waren sie vorgesehen und welche zwei Arten von Ausbildung erhielten sie?</div>
+<textarea placeholder="Deine Antwort …" data-q="15"></textarea><div class="fb" id="fb-15"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">17</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Welche drei Eigenschaften wollte die NSDAP durch die HJ bei den Jugendlichen entwickeln?</div>
+<textarea placeholder="Deine Antwort …" data-q="16"></textarea><div class="fb" id="fb-16"></div></div>
+
+<div class="sub">2.3 — Anziehungskraft der HJ</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">18</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was bot die HJ den Jugendlichen an und warum waren viele begeistert dabei? Nenne mindestens vier konkrete Aktivitäten oder Angebote.</div>
+<textarea placeholder="Deine Antwort …" data-q="17"></textarea><div class="fb" id="fb-17"></div></div>
+
+<div class="q"><div class="q-meta"><div class="q-num">19</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Welches ideologische Gefühl förderte die HJ unter den Jugendlichen gegenüber Älteren, Außenseitern und Minderheiten?</div>
+<textarea placeholder="Deine Antwort …" data-q="18"></textarea><div class="fb" id="fb-18"></div></div>
+
+<div class="sub">2.4 — Abneigung gegen die HJ</div>
+
+<div class="q"><div class="q-meta"><div class="q-num">20</div><div class="q-pt">1 Punkt</div></div>
+<div class="q-text">Was drohte Jugendlichen, die nicht mitmachten oder Regeln verletzten? Aus welchen Gründen lehnten manche die HJ ab, und wie viele zeigten offen Protest?</div>
+<textarea placeholder="Deine Antwort …" data-q="19"></textarea><div class="fb" id="fb-19"></div></div>
+
+<div class="action-row">
+  <button type="button" class="btn-go" onclick="checkAll()">Auswerten</button>
+  <button type="button" class="btn-reset" onclick="resetAll()">↺ Neu starten</button>
+</div>
+</form>
+
+<div id="result">
+  <div class="rg">
+    <div class="rb"><div class="rbig" id="r-score">—</div><div class="rsml">Punkte von 20</div></div>
+    <div class="rb"><div class="rbig" id="r-pct">—</div><div class="rsml">Prozent</div><div class="rgrade" id="r-grade">—</div></div>
+  </div>
+</div>
+
+</div>
+<script>
+const QS=[
+  // 0
+  {req:[["umwandlung","gleichgeschaltet","gleichschalt","aufgelöst","übernommen"],["vereine","verbände","parteien","organisationen"]],lbl:["Umwandlung / Gleichschaltung","Vereine, Verbände, Parteien"]},
+  // 1
+  {req:[["ermächtigungsgesetz","ermächtigung"],["freie hand","diktatur","macht","aufbau"]],lbl:["Ermächtigungsgesetz","Freie Hand / Diktaturaufbau"]},
+  // 2
+  {req:[["führerstaat","willen des führers","führer"],["kein platz","kein anderes","verboten","unterworfen","kein raum"]],lbl:["Begriff Führerstaat","Kein Platz für anderes Denken"]},
+  // 3
+  {req:[["berufsbeamtengesetz","beamte","entlassen"],["politisch","rassistisch"]],lbl:["Beamte entlassen","Gründe: politisch UND rassistisch"]},
+  // 4
+  {req:[["gewerkschaft","gewerkschaften","aufgelöst"],["vermögen","nsdap","übernahm"]],lbl:["Gewerkschaften aufgelöst","NSDAP übernahm Vermögen"]},
+  // 5
+  {req:[["länder","eigenständigkeit","verloren","selbstständig"]],lbl:["Länder verloren Eigenständigkeit"]},
+  // 6
+  {req:[["nsdap","einzige","partei"],["spd","verboten","aufgelöst","selbst aufgelöst"]],lbl:["NSDAP einzige Partei","SPD verboten / Parteien aufgelöst"]},
+  // 7
+  {req:[["selbstgleichschaltung","freiwillig","angepasst","von selbst"],["wenig personal","nicht viel personal","kaum austauschen"]],lbl:["Freiwillige Anpassung / Selbstgleichschaltung","Wenig Personalaustausch nötig"]},
+  // 8
+  {req:[["karriere","beruf"],["druck","überzeugung","glaube","ideologie"],["kein zwang","nicht gezwungen","freiwillig","niemand gezwungen"]],lbl:["Karrieregründe","Druck oder Überzeugung","Kein Zwang"]},
+  // 9
+  {req:[["staatsoberhaupt","reichspräsident","präsident"],["regierungschef","reichskanzler","kanzler"],["parteiführer","oberbefehl","Wehrmacht","militär"]],lbl:["Staatsoberhaupt","Regierungschef","Parteiführer / Oberbefehlshaber"]},
+  // 10
+  {req:[["wenige monate","schnell","kurzer","innerhalb"],["unumschränkt","unbeschränkt","alleinige","opposition","macht"]],lbl:["Diktatur in kurzer Zeit","Unumschränkte Macht / Opposition beseitigt"]},
+  // 11
+  {req:[["nicht allein","nicht alleine","viele","behörden","mitgewirkt"],["aktiv","freiwillig","unterstützt"]],lbl:["Nicht allein entschieden / Behörden beteiligt","Aktive und freiwillige Mitwirkung"]},
+  // 12
+  {req:[["führerprinzip","oberste befehlsgewalt"],["staat","militär"],["gesellschaft","partei"]],lbl:["Führerprinzip / Befehlsgewalt","Staat und Militär","Gesellschaft / Partei"]},
+  // 13
+  {req:[["wichtigste","jugendorganisation","nationalsozialisten"],["gleichgeschaltet","aufgelöst","übernommen","zwangsweise"]],lbl:["HJ wichtigste Jugendorganisation","Andere Gruppen gleichgeschaltet/aufgelöst"]},
+  // 14
+  {req:[["pflicht","pflichtorganisation","verpflichtend"],["jungen","mädchen","beide","alle"],["10","zehn","18","achtzehn"]],lbl:["Pflichtorganisation","Jungen UND Mädchen","Alter 10–18 Jahre"]},
+  // 15
+  {req:[["krieg","kämpf","gefolgsleute"],["körperlich","militärisch"],["ideologisch","schulung"]],lbl:["Erziehung für den Krieg / Gefolgsleute","Körperliche / militärische Ausbildung","Ideologische Schulung"]},
+  // 16
+  {req:[["mutig","mut"],["gehorsam","gehorchen"],["anpassungsfähig","anpassen"]],lbl:["Mutig","Gehorsam","Anpassungsfähig"]},
+  // 17
+  {req:[["zeltlager","zelten"],["geländespiele","spiele"],["lagerfeuer","ausflüge"],["uniform","waffen","technik","gemeinschaft"]],lbl:["Zeltlager","Geländespiele","Lagerfeuer / Ausflüge","Uniform / Waffen / Technik / Gemeinschaft"]},
+  // 18
+  {req:[["überlegenheit","überlegen","auslese"],["ältere","außenseiter","minderheiten"]],lbl:["Gefühl der Überlegenheit / Auslese","Gegenüber Älteren, Außenseitern, Minderheiten"]},
+  // 19
+  {req:[["strafdienst","bestraft","strafe"],["gericht","gerichte"],["zwangscharakter","zwang","eingeschränkt","politisch","militärisch"],["wenige","kaum","nur wenige","wagten","offen"]],lbl:["Strafdienste als Strafe","Gerichte","Gründe der Ablehnung","Nur wenige wagten offenen Protest"]}
+];
+
+const TOTAL=QS.length;
+function norm(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim()}
+function calc(i,ans){const q=QS[i],n=norm(ans);let hit=0,miss=[];q.req.forEach((g,j)=>{if(g.some(k=>n.includes(norm(k))))hit++;else miss.push(q.lbl[j])});return{hit,total:q.req.length,miss}}
+
+function checkAll(){
+  let pts=0;
+  document.querySelectorAll('textarea').forEach((ta,i)=>{
+    const v=ta.value.trim(),fb=document.getElementById('fb-'+i);
+    if(!v){fb.className='fb bad';fb.innerHTML='<span class="fbi">[✗]</span>Keine Antwort.<div class="miss">Aspekte: '+QS[i].lbl.join(' · ')+'</div>';return}
+    const{hit,total,miss}=calc(i,v);const r=hit/total;
+    if(r>=1){pts+=1;fb.className='fb ok';fb.innerHTML='<span class="fbi">[✓]</span>Alle Kernpunkte enthalten.'}
+    else if(r>=0.5){pts+=0.5;fb.className='fb half';fb.innerHTML='<span class="fbi">[~]</span>Teilweise richtig ('+hit+'/'+total+' Aspekte).'+(miss.length?'<div class="miss">Fehlend: '+miss.join(' · ')+'</div>':'')}
+    else{fb.className='fb bad';fb.innerHTML='<span class="fbi">[✗]</span>Wichtige Punkte fehlen ('+hit+'/'+total+').'+'<div class="miss">Fehlend: '+miss.join(' · ')+'</div>'}
+  });
+  const pct=Math.round(pts/TOTAL*100);
+  document.getElementById('prog').style.width=pct+'%';
+  const grades=['Note 5 — Mangelhaft','Note 4 — Ausreichend','Note 3 — Befriedigend','Note 2 — Gut','Note 1 — Sehr gut'];
+  const gi=pct>=90?4:pct>=75?3:pct>=60?2:pct>=45?1:0;
+  const r=document.getElementById('result');
+  r.style.display='block';
+  document.getElementById('r-score').textContent=pts.toFixed(1).replace('.0','')+'/'+TOTAL;
+  document.getElementById('r-pct').textContent=pct+'%';
+  document.getElementById('r-grade').textContent=grades[gi];
+  r.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetAll(){
+  document.querySelectorAll('textarea').forEach(t=>t.value='');
+  document.querySelectorAll('.fb').forEach(f=>{f.className='fb';f.innerHTML=''});
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-lbl').textContent='0 / '+TOTAL+' beantwortet';
+  document.getElementById('result').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.querySelectorAll('textarea').forEach(ta=>{
+  ta.addEventListener('input',()=>{
+    const n=[...document.querySelectorAll('textarea')].filter(t=>t.value.trim()).length;
+    document.getElementById('prog').style.width=Math.round(n/TOTAL*100)+'%';
+    document.getElementById('prog-lbl').textContent=n+' / '+TOTAL+' beantwortet';
+  });
+});
+</script>
+</body>
+</html>
